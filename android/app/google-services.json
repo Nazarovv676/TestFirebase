@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "445741811597",
+    "firebase_url": "https://testfire-153cc-default-rtdb.firebaseio.com",
+    "project_id": "testfire-153cc",
+    "storage_bucket": "testfire-153cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445741811597:android:3d9b5b346399f0959bdfc4",
+        "android_client_info": {
+          "package_name": "com.nazarovv676.testfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445741811597-jglu6cooq9t3h8dnhvclbk9luhqa0ac9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0YsvOZaJbAajXfpJQjkWkMvrSop1uNAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445741811597-jglu6cooq9t3h8dnhvclbk9luhqa0ac9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
