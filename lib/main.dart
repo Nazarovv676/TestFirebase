@@ -1,9 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:testfirebase/models/user.dart';
 import 'package:testfirebase/pages/home/HomePage.dart';
 import 'package:testfirebase/pages/signUpIn/alternativeSignIn.dart';
 import 'package:testfirebase/pages/signUpIn/components/bluredGradient.dart';
 import 'package:testfirebase/pages/signUpIn/signUpPage.dart';
+import 'package:testfirebase/pages/wrapper.dart';
+import 'package:testfirebase/services/authService.dart';
 
 final bool signedIn = false;
 
@@ -65,25 +69,23 @@ class StartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        fontFamily: 'Comfortaa',
-        backgroundColor: Colors.grey[900],
+    return StreamProvider<UserModel>.value(
+      value: AuthService().user,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          fontFamily: 'Comfortaa',
+          backgroundColor: Colors.grey[900],
+        ),
+        theme: ThemeData(
+          brightness: Brightness.light,
+          fontFamily: 'Comfortaa',
+          backgroundColor: Colors.white,
+        ),
+        themeMode: ThemeMode.system,
+        home: Wrapper(),
       ),
-      theme: ThemeData(
-        brightness: Brightness.light,
-        fontFamily: 'Comfortaa',
-        backgroundColor: Colors.white,
-      ),
-      themeMode: ThemeMode.system,
-      initialRoute: signedIn ? '/home' : '/signIn',
-      routes: {
-        '/home': (context) => HomePage(),
-        '/signIn': (context) => SignInPageAlternative(),
-        '/signUp': (context) => SignUpPage(),
-      },
     );
   }
 }

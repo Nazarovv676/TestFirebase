@@ -41,21 +41,24 @@ class _SignInContainerState extends State<SignInContainer> {
   void anonLogin() async {
     dynamic result = await _auth.signInAnon();
     if (result == null)
-      print('error singin in');
+      print('error singing in');
     else {
       print('signed in');
-      print(result);
+      print(result.uid);
     }
   }
 
+  //TODO register
   void register() {
     print('register');
   }
 
+  //TODO forgot password
   void forgotPassword() {
     print('forgot password');
   }
 
+  //TODO sign in
   void signIn() {
     setState(() {
       _loginController.text.isEmpty
@@ -68,10 +71,12 @@ class _SignInContainerState extends State<SignInContainer> {
     print('sign in ${_loginController.text} ${_passwordController.text}');
   }
 
+  //TODO facebook
   void signInFacebook() {
     print('facebook');
   }
 
+  //TODO google
   void signInGoogle() {
     print('google');
   }

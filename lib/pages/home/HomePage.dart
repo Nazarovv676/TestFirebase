@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testfirebase/services/authService.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -8,6 +9,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final AuthService _auth = AuthService();
+  void _logOut() async {
+    await _auth.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,6 +21,13 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: Text('Home page'),
           backgroundColor: Theme.of(context).primaryColor,
+          actions: [
+            FlatButton.icon(
+              icon: Icon(Icons.logout),
+              label: Text('Logout'),
+              onPressed: _logOut,
+            )
+          ],
         ),
       ),
     );
