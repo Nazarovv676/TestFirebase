@@ -1,8 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:testfirebase/services/authService.dart';
 
 import 'components/bluredGradient.dart';
 
@@ -33,6 +35,18 @@ class _SignInContainerState extends State<SignInContainer> {
   final _passwordController = TextEditingController();
   bool _loginIsEmpty = false;
   bool _passwordIsEmpty = false;
+
+  final AuthService _auth = AuthService();
+
+  void anonLogin() async {
+    dynamic result = await _auth.signInAnon();
+    if (result == null)
+      print('error singin in');
+    else {
+      print('signed in');
+      print(result);
+    }
+  }
 
   void register() {
     print('register');
@@ -158,20 +172,54 @@ class _SignInContainerState extends State<SignInContainer> {
               ],
             ),
             SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Don`t have an account?'),
-                TextButton(
-                  onPressed: register,
-                  child: Text(
-                    'Register',
-                  ),
-                )
-              ],
+            BottomText(
+              anonLogin: anonLogin,
+              register: register,
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class BottomText extends StatelessWidget {
+  const BottomText({Key key, this.register, this.anonLogin}) : super(key: key);
+
+  final Function register;
+  final Function anonLogin;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              style: DefaultTextStyle.of(context).style,
+              text: 'Don`t have an account? ',
+              children: [
+                TextSpan(
+                  style: DefaultTextStyle.of(context)
+                      .style
+                      .copyWith(color: Theme.of(context).accentColor),
+                  text: 'Register\n',
+                  recognizer: TapGestureRecognizer()..onTap = register,
+                ),
+                TextSpan(text: 'or '),
+                TextSpan(
+                  style: DefaultTextStyle.of(context)
+                      .style
+                      .copyWith(color: Theme.of(context).accentColor),
+                  text: 'Anonymous login',
+                  recognizer: TapGestureRecognizer()..onTap = anonLogin,
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
