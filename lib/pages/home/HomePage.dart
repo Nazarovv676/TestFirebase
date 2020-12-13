@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:testfirebase/services/authService.dart';
 
 class HomePage extends StatefulWidget {
+  String get route => '/home';
+
   HomePage({Key key}) : super(key: key);
 
   @override

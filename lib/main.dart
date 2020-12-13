@@ -1,11 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:testfirebase/models/user.dart';
+import 'package:testfirebase/pages/authenticate/components/bluredGradient.dart';
+import 'package:testfirebase/pages/authenticate/signUpPage.dart';
 import 'package:testfirebase/pages/home/HomePage.dart';
-import 'package:testfirebase/pages/signUpIn/alternativeSignIn.dart';
-import 'package:testfirebase/pages/signUpIn/components/bluredGradient.dart';
-import 'package:testfirebase/pages/signUpIn/signUpPage.dart';
+import 'package:testfirebase/pages/authenticate/signInPage.dart';
 import 'package:testfirebase/pages/wrapper.dart';
 import 'package:testfirebase/services/authService.dart';
 
@@ -69,7 +69,7 @@ class StartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<UserModel>.value(
+    return StreamProvider<User>.value(
       value: AuthService().user,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -85,6 +85,11 @@ class StartScreen extends StatelessWidget {
         ),
         themeMode: ThemeMode.system,
         home: Wrapper(),
+        routes: {
+          HomePage().route: (context) => HomePage(),
+          SignInPage().route: (context) => SignInPage(),
+          SignUpPage().route: (context) => SignUpPage(),
+        },
       ),
     );
   }

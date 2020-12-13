@@ -1,15 +1,18 @@
+import 'dart:ffi';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:testfirebase/pages/authenticate/signUpPage.dart';
 import 'package:testfirebase/services/authService.dart';
 
 import 'components/bluredGradient.dart';
 
-class SignInPageAlternative extends StatelessWidget {
-  const SignInPageAlternative({Key key}) : super(key: key);
+class SignInPage extends StatelessWidget {
+  String get route => '/signIn';
+  const SignInPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +39,14 @@ class _SignInContainerState extends State<SignInContainer> {
   bool _loginIsEmpty = false;
   bool _passwordIsEmpty = false;
 
+  bool _isLoading = false;
+
   final AuthService _auth = AuthService();
 
   void anonLogin() async {
+    setState(() {
+      _isLoading = true;
+    });
     dynamic result = await _auth.signInAnon();
     if (result == null)
       print('error singing in');
@@ -48,9 +56,9 @@ class _SignInContainerState extends State<SignInContainer> {
     }
   }
 
-  //TODO register
   void register() {
     print('register');
+    Navigator.pushNamed(context, SignUpPage().route);
   }
 
   //TODO forgot password
@@ -154,9 +162,11 @@ class _SignInContainerState extends State<SignInContainer> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 20),
-              child: Divider(
-                thickness: 2.0,
-              ),
+              child: _isLoading
+                  ? LinearProgressIndicator()
+                  : Divider(
+                      thickness: 2.0,
+                    ),
             ),
             Align(
               alignment: Alignment.center,
@@ -180,7 +190,7 @@ class _SignInContainerState extends State<SignInContainer> {
             BottomText(
               anonLogin: anonLogin,
               register: register,
-            )
+            ),
           ],
         ),
       ),
