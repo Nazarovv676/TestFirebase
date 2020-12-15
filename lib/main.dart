@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:testfirebase/pages/authenticate/components/bluredGradient.dart';
 import 'package:testfirebase/pages/authenticate/signUpPage.dart';
 import 'package:testfirebase/pages/home/HomePage.dart';
@@ -28,12 +31,22 @@ class _InitializeAppState extends State<InitializeApp> {
   void initializeFlutterFire() async {
     try {
       // Wait for Firebase to initialize and set `_initialized` state to true
+      // fb.initializeApp(
+      //   apiKey: "AIzaSyCkL8rXgycOUteua1fxN65cSCmZqSo1L0s",
+      //   authDomain: "testfire-153cc.firebaseapp.com",
+      //   databaseURL: "https://testfire-153cc-default-rtdb.firebaseio.com",
+      //   projectId: "testfire-153cc",
+      //   storageBucket: "testfire-153cc.appspot.com",
+      //   messagingSenderId: "445741811597",
+      //   appId: "1:445741811597:web:04fd57e8b64a2cef9bdfc4",
+      // );
       await Firebase.initializeApp();
       setState(() {
         _initialized = true;
       });
     } catch (e) {
       // Set `_error` state to true if Firebase initialization fails
+      print(e);
       setState(() {
         _error = true;
       });
@@ -83,7 +96,7 @@ class StartScreen extends StatelessWidget {
           fontFamily: 'Comfortaa',
           backgroundColor: Colors.white,
         ),
-        themeMode: ThemeMode.system,
+        themeMode: kIsWeb ? ThemeMode.light : ThemeMode.system,
         home: Wrapper(),
         routes: {
           HomePage().route: (context) => HomePage(),

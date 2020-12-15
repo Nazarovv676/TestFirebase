@@ -16,11 +16,11 @@ class BluredGradient extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color.fromRGBO(245, 210, 0, 96),
-            Color.fromRGBO(252, 166, 13, 99),
-            Color.fromRGBO(230, 80, 0, 90),
-            Color.fromRGBO(252, 21, 13, 99),
-            Color.fromRGBO(250, 28, 113, 98),
+            Color.fromRGBO(245, 210, 0, 1),
+            Color.fromRGBO(252, 166, 13, 1),
+            Color.fromRGBO(230, 80, 0, 1),
+            Color.fromRGBO(252, 21, 13, 1),
+            Color.fromRGBO(250, 28, 113, 1),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
