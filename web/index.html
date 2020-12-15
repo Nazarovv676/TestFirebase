@@ -30,9 +30,22 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <!-- This script installs service_worker.js to provide PWA functionality to
+  
+       <!-- The core Firebase JS SDK is always required and must be listed first -->
+  
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+     <script defer src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+
+     <script defer src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+     <script defer src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
+   
+     <!-- Initialize Firebase -->
+     <script src="/__/firebase/init.js"></script>
+
+     <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
+     https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('flutter-first-frame', function () {
@@ -40,6 +53,21 @@
       });
     }
   </script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCkL8rXgycOUteua1fxN65cSCmZqSo1L0s",
+      authDomain: "testfire-153cc.firebaseapp.com",
+      databaseURL: "https://testfire-153cc-default-rtdb.firebaseio.com",
+      projectId: "testfire-153cc",
+      storageBucket: "testfire-153cc.appspot.com",
+      messagingSenderId: "445741811597",
+      appId: "1:445741811597:web:04fd57e8b64a2cef9bdfc4"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
   <script src="main.dart.js" type="application/javascript"></script>
+  
 </body>
 </html>
