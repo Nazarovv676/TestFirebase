@@ -1,9 +1,11 @@
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:testfirebase/pages/authenticate/signUpPage.dart';
 import 'package:testfirebase/services/authService.dart';
@@ -67,7 +69,8 @@ class _SignInContainerState extends State<SignInContainer> {
   }
 
   //TODO sign in
-  void signIn() {
+  void signIn() async {
+    //проверка если поля пустые то покажем сообщения что они пустые
     setState(() {
       _loginController.text.isEmpty
           ? _loginIsEmpty = true
@@ -75,8 +78,36 @@ class _SignInContainerState extends State<SignInContainer> {
       _passwordController.text.isEmpty
           ? _passwordIsEmpty = true
           : _passwordIsEmpty = false;
+      _isLoading = true;
     });
-    print('sign in ${_loginController.text} ${_passwordController.text}');
+    //sign in
+    dynamic result = await _auth.signInWithEmailAndPassword(
+      email: _loginController.text,
+      password: _passwordController.text,
+    );
+    //check results
+    if (result.runtimeType == User) {
+      //if user is signed in
+      print('signed in');
+      print(result.uid);
+      setState(() {
+        _isLoading = false;
+      });
+    } else {
+      Fluttertoast.showToast(
+        msg: result == authProblems.NetworkError
+            ? 'Network error'
+            : result == authProblems.PasswordNotValid
+                ? 'Password not valid'
+                : result == authProblems.UserNotFound
+                    ? 'User not found'
+                    : 'Unexpexted error',
+        timeInSecForIosWeb: 10,
+      );
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   //TODO facebook
