@@ -12,8 +12,6 @@ import 'package:testfirebase/pages/authenticate/signInPage.dart';
 import 'package:testfirebase/pages/wrapper.dart';
 import 'package:testfirebase/services/authService.dart';
 
-final bool signedIn = false;
-
 void main() {
   runApp(InitializeApp());
 }
