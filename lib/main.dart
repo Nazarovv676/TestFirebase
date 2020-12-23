@@ -10,6 +10,7 @@ import 'package:testfirebase/pages/authenticate/signUpPage.dart';
 import 'package:testfirebase/pages/home/HomePage.dart';
 import 'package:testfirebase/pages/authenticate/signInPage.dart';
 import 'package:testfirebase/pages/wrapper.dart';
+
 import 'package:testfirebase/services/authService.dart';
 
 void main() {
