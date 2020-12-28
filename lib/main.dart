@@ -28,6 +28,7 @@ class _InitializeAppState extends State<InitializeApp> {
 
   // Define an async function to initialize FlutterFire
   void initializeFlutterFire() async {
+    ///this method initialize firebase connections
     try {
       // Wait for Firebase to initialize and set `_initialized` state to true
       await Firebase.initializeApp();
